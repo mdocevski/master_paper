@@ -1,0 +1,201 @@
+%\documentclass[12pt,oneside,a4paper]{article}
+%\documentclass[12pt,twoside,singlespace,a4paper]{mitthesis}
+\documentclass[12pt,oneside,singlespace,a4paper]{mitthesis}
+%%%%%%%%%%% PACKAGES  %%%%%%%%%
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{enumitem}
+%\setlist{noitemsep}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[absolute]{textpos} %potrebno
+\usepackage{ragged2e} %potrebno
+%\usepackage{algorithmic,algorithm2e,float}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage[T2A]{fontenc} % (MILOS) needed for cyrillic letters
+\usepackage[utf8x]{inputenc}
+%\usepackage[english]{babel}
+\usepackage[bulgarian]{babel} % (MILOS) needed for Macedonian letters and 
+\usepackage{titlesec}
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\headheight}{15pt} 
+\usepackage{makecell}
+\usepackage{atbegshi}
+\let\oldbibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\oldbibliography{#1}
+    \setlength{\itemsep}{0pt}} %Reducing spacing in the bibliography.
+
+
+\usepackage{multirow}
+\usepackage[unicode,colorlinks=false,linkcolor=blue,citecolor=blue,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+
+\usepackage{bookmark}
+
+% PACKAGES FOR Listings
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,               % sets automatic line breaking
+    captionpos=b,   
+    language=Python,
+    aboveskip=1mm,
+    belowskip=1mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    basicstyle=\scriptsize,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+
+%%%%%%%% Title page parameters  %%%%%%%%
+\newcommand{\shortdoctitle}{Магистерска работа}
+\newcommand{\doctitle}{Генерирање на музика со техники за машинско учење}
+\newcommand{\docsubtitle}{Магистерска работа}
+
+\newcommand{\me}{Марко Доцевски}
+\newcommand{\keywords}{}
+\newcommand{\keywordsen}{}
+\newcommand{\version}{Прва верзија}
+\newcommand{\monthYear}{Мај 2018}
+\newcommand{\firstCommitteeMember}{Проф. д-р Андреа Кулаков}
+
+\newtheorem{theorem}{Акција}
+%%%% RENAMING CAPTIONS TO MACEDONIAN
+
+%\makeatletter
+%\renewcommand*{\ALG@name}{Алгоритам}
+%\makeatother
+\usepackage{float}
+%\renewcommand*{\ALG@name}{Алгоритам}
+\floatname{algorithm}{Алгоритам}
+\newcommand{\algorithmname}{Алгоритам}
+\renewcommand{\lstlistingname}{Изворен код}
+
+%\addto{\captionsenglish}{\renewcommand{\abstractname}{Апстракт}}
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\contentsname}%
+    {Содржина}%
+}
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\figurename}{Слика}
+}
+%
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\tablename}{Табела}
+}
+
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\bibname}{Библиографија}
+}
+
+%\addto\captionsbulgarian{% Replace "english" with the language you use
+%	\renewcommand{\lstlistingname}{Изворен код}% Listing -> Algorithm
+%}
+%
+%\addto\captionsbulgarian{% Replace "english" with the language you use
+%	\renewcommand{\lstlistlistingname}{Листа на изворни кодови}% List of Listings ->
+%}
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\listfigurename}{Листа на слики}
+}
+\addto\captionsbulgarian{% Replace "english" with the language you use
+    \renewcommand{\listtablename}{Листа на табели}
+}
+        
+        
+        %\usepackage{chngcntr}
+        %\counterwithin{figure}{chapter}
+        %%\counterwithout{figure}{chapter}
+        
+\begin{document}
+        %	\frontmatter 
+        %\nobibliography*
+    % 	\pagenumbering{roman}
+        \sloppy
+        %%%%%% POMOSNI STRANICI PRED POCETOKOT NA TEKSOTOT
+        \include{MSc_Marko_Docevski_titlepage_mk}
+        
+        
+        %%%%%%%%%% (MILOS) needed for Macedonian hyphenation
+        %\include{macedonian-hyphen}
+        %\include{hyph-mk}
+        
+        % Da go stavam fajlot vo?
+        % /usr/local/texlive/2016/texmf-dist/tex/generic/hyph-utf8/patterns/tex
+        %/usr/local/texlive/2016/texmf-dist/tex/generic/babel-macedonian
+        %/usr/local/texlive/2016/texmf-dist/tex/generic/hyph-utf8/loadhyph
+        
+        \pagestyle{empty}
+        %\include{contents}
+        \tableofcontents
+        \cleardoublepage
+        % \phantomsection
+        \addcontentsline{toc}{chapter}{\listfigurename}
+        \listoffigures
+        %\newpage
+        %\listoffigures
+        %\newpage
+        %\cleardoublepage
+        \addcontentsline{toc}{chapter}{\listtablename}
+        \listoftables
+        
+        %%%%%%%%%% (MILOS) needed for MKD name for 'chapter'
+        \titleformat{\chapter}[display]
+        {\normalfont\huge\bfseries}{Глава\ \thechapter}{20pt}{\Huge}
+        %%%%%%%%%%
+    
+        
+        % \newpage %Page break 
+        % \addcontentsline{toc}{section}{Листа на кратенки}
+        % \section*{Листа на кратенки}
+        
+        % АПЖ - Амбиент Потпомогнато Живеење \\
+        % АСЖ - Активности на Секојдневно Живеење \\
+        % МНВ -Машини со Носечки Вектори \\
+        % НСЖ - Напредни активности на Секојдневно Живеење \\
+        
+        \newpage %Page break
+        
+        %%%%% GLAVI OD TEKSTOT
+        \pagestyle{plain}
+        %\mainmatter
+        \justify	
+        \newpage
+    % 	\pagenumbering{arabic}
+        \include{MSc_Marko_Docevski_tekst}
+        
+        \appendix
+        
+        %%%%%%%%%% (MILOS) needed for MKD name for 'appendix'
+        \titleformat{\chapter}[display]
+        {\normalfont\huge\bfseries}{Додаток\ \thechapter}{20pt}{\Huge}
+        %%%%%%%%%%
+        
+        % \include{appa}
+        % \include{appb}
+        
+        %\include{biblio}
+        %\bibliography{\jobname}
+    %	\begin{singlespace}
+            \bibliography{2017_PhD_all}
+            %	\bibliographystyle{plain}
+            \bibliographystyle{IEEEtran}
+    %	\end{singlespace}
+            
+\end{document}

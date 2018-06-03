@@ -21,7 +21,15 @@
 
 \chapter{Преглед на литературата}
 
-Првиот обид за алгоритамско креирање на музика е забележан уште во XVIII од страна на """Јохан Филип Кирнбергер - Секогаш спремен минует и поноњески композитор""" (гер. Der allezeit fertige Menuetten- und Polonaisencomponist)
+Еден од раните обид за „алгоритамско“ креирање на музика е познат како „Музички игри со коцки“, бил популарен во XVIII век. Првата забележана композиција создадена на овој начин е „Секогаш спремен минует и поноњески композитор“ (гер. Der allezeit fertige Menuetten- und Polonaisencomponist) од Јохан Филип Кирнбергер уште во 1757год. Најпопуларни биле игрите напишани од страна на Хајдн и Моцарт, поради што може да се пронајдат вакви игри и под името Моцартови коцки. Ваквуте игри најчесто се состојат од таблица од музички исечоци, во големина од еден до неколку такта, кои се напишани така да немаат остри рабови за да може лесно да се надоврзуваат. Играчите на играта фрлаат коцки или случајно избираат број, па според тоа избираат исечок од табелата според одредена шема која иде со табелта, и избраниот исечок го прилепуваат на композицијата. Играта трае се додека играчот не одлучи дека има доволно долга композиција. Квалитетот на добиената композиција зависи најмногу од квалитетот на исечоците. Бројот на можни исечоци мора да биде релативно мал за да може играчите да може практично да играат, а да не прелистуваат стотици страници секој пат кога ќе свртат коцка. Исечоците за да можат да бидат лесно поврзливи од двете страни практично треба да имаа почеток, средина и крај, т.е. да бидам самостојни микро-композиции. Поради сите овие ограничувања, Музичките игри со коцки повеќе се игра отколку практичен начин за алгоритамски пристап за компонирање музика. Доклку се решат сите ограничувања играта би добила многу поголем капацитет за креативност, меѓутоа би била непрактична за човечка употреба. Тука влегуваат во игра компутерски имплементации на играта. Скоро сите пристапи кои ги истражив може да се апстрахираат како играта врз основа на 2 клучни точки:
+\begin{itemize}
+    \item Дефиниција на исечок / Освноен елемент на композиција 
+    \item Избор на исечок / Начин на прилепување на исечоците
+\end{itemize}
+Пристапите кои ги разгледав може се подделат во две епохи пред длабоко учење и со длабоко учење. Пред длабоко учење сите пристапи се доста блиски до игрите со коцки, поголем дел бараат само начин на заменување на процесот на избор на исечок со: правила и граматики, експертски системи, генетски алгоритми. Пристапите со длабоко учење се повеќе се оддалечуваат од игрите, но сепак суштински го вршат истото. 
+
+\subsection{Граматички / експертски системи} 
+
 
 \cite{Cope1991} Expert system EMI - Experiments in Musical Intelligence that builds on top of the Musical Dice Games invented by Haydn and Mozart. The games are based on recombining meassures, chosen from a table of meassures, by a random dice throw (or a stochastic process). EMI analyses the measures by pitches and durations and then mixes and recombines the patterns of those pitches and durations so that it generates music similar to the source material. Recombination involves pattern matching. Pattern matching should be exact, but should match musically similar patterns. EMI does this not by note pitch values, but by pitch movement and note intervals. Problems include: - how to split the source material into recombinant units, that still make sense and keep the source author/work style and harmonic structure. - how to reorder and reasemble them so that the new composition makes musical sense. Patterns are mostly 1 to 2 beats long and patterns usually start at a measure boundry. Once it detects a pattern within a composers work / corpus of a style, it creates a signature that is protected during the recombination process, so that it doesn't lose it musical meaning. After the signatures have been extracted, EMI performs hierarchical analysis on them with handwritten rules based on musical theory. Analyzed patterns are stored in lexicons according to their function. When this is done it moves on to creating music with recombination and reorganization of the patterns, using a fixed sequence of functions with free substitutions of the actual music the patterns represent. Reasembly is enchanced by using ATN (Augmented Transition Networks), a NLP technique designed to create sentences from parts stored by sentence function.
 
@@ -241,7 +249,6 @@ The authors of \cite{Madjiheurem2016} used an Auto-encoder architecture to learn
 
 \section{Пристап}
 
-\subsection{Граматички / експертски системи} 
 \subsection{Алгоритми со длабоко учење} 
 
 \section{Цел}
@@ -385,7 +392,7 @@ beats. Mozer’s
 \cite{Sturm2016} We create data for training our folk-rnn model in the following way. We
 remove title fields and ornaments. We remove all transcriptions that have fewer than 7 measures when considering repetitions (to remove contributions that are not complete transcriptions, but transcriptions of suggested endings, variations, etc.). We remove all transcriptions that have more than one meter or key.11 We transpose all remaining transcriptions (23,636) to a key with root C.
 We impose a transcription token vocabulary — each token consists of one or more characters — for the following seven types (with examples in parens): meter (“M:3/4”), key (“K:Cmaj”), measure (“:|” and “|1”), pitch (“C” and “c’”),
-grouping (“(3”), duration (“2” and “/2”), and transcription (“<s>” and “<\s>”). 
+grouping (“(3”), duration (“2” and “/2”), and transcription (“<s>” and “<\ s>”). 
 Our dataset has 4,056,459 tokens, of which 2,816,498 are pitch, 602,673 are du- ration, and 520,290 are measure. A majority of the 23,636 transcriptions consists of 150 tokens or fewer; and 75percent have no more than 190. There are 137 unique tokens, each of which becomes a vocabulary element for our folk-rnn model.
 
 \cite{Yang2017} 

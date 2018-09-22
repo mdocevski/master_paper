@@ -245,16 +245,22 @@ title = {{Automatic Stylistic Composition of Bach Chorales with Deep LSTM}},
 year = {2017}
 }
 
-@article{Johnson2017,
-abstract = {We describe a neural network architecture which enables prediction and composition of polyphonic music in a manner that preserves translation-invariance of the dataset. Specifically, we demonstrate training a probabilistic model of polyphonic music using a set of parallel, tied-weight recurrent networks, inspired by the structure of convolutional neural networks. This model is designed to be invariant to transpositions, but otherwise is intentionally given minimal in-formation about the musical domain, and tasked with discovering patterns present in the source dataset. We present two versions of the model, denoted TP-LSTM-NADE and BALSTM, and also give methods for training the network and for generating novel music. This approach attains high performance at a musical pre-diction task and successfully creates note sequences which possess measure-level musical structure.},
-author = {Johnson, Daniel D.},
-doi = {10.1007/978-3-319-55750-2_9},
-isbn = {9783319557496},
-issn = {16113349},
-journal = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
-pages = {128--143},
-title = {{Generating polyphonic music using tied parallel networks}},
-volume = {10198 LNCS},
+@article{Raffel2016,
+abstract = {Sequences of feature vectors are a natural way of representing temporal data. Given a database of sequences, a fundamental task is to find the database entry which is the most similar to a query. In this thesis, we present learning-based methods for efficiently and accurately comparing sequences in order to facilitate large-scale sequence search. Throughout, we will focus on the problem of matching MIDI files (a digital score format) to a large collection of audio recordings of music. The combination of our proposed approaches enables us to create the largest corpus of paired MIDI files and audio recordings ever assembled.},
+author = {Raffel, Colin},
+isbn = {9781339928296},
+pages = {222},
+title = {{Learning-Based Methods for Comparing Sequences, with Applications to Audio-to-MIDI Alignment and Matching}},
+year = {2016}
+}
+
+@article{Dong2017,
+abstract = {Generating music has a few notable differences from generating images and videos. First, music is an art of time, necessitating a temporal model. Second, music is usually composed of multiple instruments/tracks with their own temporal dynamics, but collectively they unfold over time interdependently. Lastly, musical notes are often grouped into chords, arpeggios or melodies in polyphonic music, and thereby introducing a chronological ordering of notes is not naturally suitable. In this paper, we propose three models for symbolic multi-track music generation under the framework of generative adversarial networks (GANs). The three models, which differ in the underlying assumptions and accordingly the network architectures, are referred to as the jamming model, the composer model and the hybrid model. We trained the proposed models on a dataset of over one hundred thousand bars of rock music and applied them to generate piano-rolls of five tracks: bass, drums, guitar, piano and strings. A few intra-track and inter-track objective metrics are also proposed to evaluate the generative results, in addition to a subjective user study. We show that our models can generate coherent music of four bars right from scratch (i.e. without human inputs). We also extend our models to human-AI cooperative music generation: given a specific track composed by human, we can generate four additional tracks to accompany it. All code, the dataset and the rendered audio samples are available at https://salu133445.github.io/musegan/ .},
+archivePrefix = {arXiv},
+arxivId = {1709.06298},
+author = {Dong, Hao-Wen and Hsiao, Wen-Yi and Yang, Li-Chia and Yang, Yi-Hsuan},
+eprint = {1709.06298},
+title = {{MuseGAN: Multi-track Sequential Generative Adversarial Networks for Symbolic Music Generation and Accompaniment}},
 year = {2017}
 }
 

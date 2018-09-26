@@ -78,11 +78,23 @@ Whether AI is truly creative or merely generating a kind of pastiche, the music 
 This work was inspired by the legendary article by Andrej Karpathy - The Unreasonable Effectiveness of Recurrent Neural Networks \cite{AndrejKarpathy2015}. In it Karpathy shows how a neural network consisting of 2 layers of 512 LSTM cells can generalize over several datasets of textual data: Paul Graham essay, Shakespeare plays, XML and Linux C/C++ source code. The resulting model can generate new sequences that are reasonably close to the source material and can almost fool a human, and in the case of C/C++ code some of the results compile. It is a character-level language model, i.e., it learns the texts letter by letter. Our first experiment was to adapt this model to the task of music generation.
 
 
-\section{Пристап}
-\section{Цел}
-\subsection{Импровизации} 
-\subsection{Помогната копозиција} 
-\subsection{Самостојо генерирање} 
+\chapter{Пристап}
+
+Во поширокото поле на креирање на системи за генерирање на музика може да се решеаваат повеќе категории на подпроблеми, т.е. системите може да се ориентираат кон извршување на одредена карактеристична креативна задача со специфични ограничувања. Досегашните системи може да се групираат според целта врз основа на 2 критериуми:
+\begin{itemize}
+    \item Комплексност на музиката што се генераира, и тоа: \begin{itemize}
+        \item единечна монофона мелдоија - секвенца од ноти во еден глас (ЦИТИРАЈ)
+        \item единечна полифона мелодија - повеќе паралелни секвенци (делови од композиција) од ноти во гласови (контрапункт) или една секвенца од ноти или акорди (ЦИТИРАЈ)
+        \item композиција од повеќе полифони траки - повеќе паралелни секвенци (делиови) од ноти или агорди (ЦИТИРАЈ)
+    \end{itemize}
+    \item Независност на алрогитамот за креирање, и тоа: \begin{itemize}
+        \item помогната човечка композиција - алгоритамот му помага на човечки композитор при работа, нудејќи интелигентно дополнување, реаранжмани, поправки или идеји (ЦИТИРАЈ)
+        \item рехармонизација/реаранжман/римејк - дополнување на композиција брз основа на еден или повеќе постоечки делови, генерирање на мелодиска придружба врз основа на секвенца од акорди (или обратно), генерирање на музичка придружба врз основа на ритамска или мелодиска линија (ЦИТИРАЈ)
+        \item самостојно генерирање - генерирање на целосна музичка композиција без користење на помошна водилка (ЦИТИРАЈ)
+    \end{itemize}
+\end{itemize}
+
+Во овој труд ќе го прикажам мојот обид за креирање на систем за самостојно генерирање на повеќе делна полифона музика, примарно рок музика составена од 3 дела: перкусии, гитара и бас.
 
 \chapter{Машинско учење}
 

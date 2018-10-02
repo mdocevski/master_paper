@@ -98,26 +98,223 @@ This work was inspired by the legendary article by Andrej Karpathy - The Unreaso
 
 \chapter{Машинско учење}
 
+Машинско учење е област од компјутерските науки во која со примена на алгоритми и постапки за обработка на податоци врз одредено податочно множество градиме компјутерски програми за решавање реални проблеми без експлицитно програмирање на истите. Според Том Мичел од Карнеги Мелон Универзитетот: „Машинско учењер е област која се стреми да одговори на прашањето: Како може да изградиме компјутерски ситем којшто сам се подобрува со искуство, и кои се основните закони кои што го дефинираат процесот на учење на тој систем?“ Тоа е присутно насекаде, од системите за пребарување на интернет, медицински примени како детекција на рак од снимки, мапирање на човечкиот геном, синтеза на лекови; системи за препораки на филмови, музика, продажба; машински превод, гласовни асисенти и тн. Машинско учење се наоѓа на граница помеѓу компјутерски науки, статистика, математика и инженерство, меѓутоа највеќе се гледа како дел од вештачка интелигенција.
+
+Во контекстот на машинско учење постојат два типа на пристапи: надгледувано и ненадгледувано учење. Надгледувано учење се состои од мапирање на примероци од податочно множество X кон излезна променлива Y=f(X) и најчесто решава класификациски и регресиони проблеми. Класификација претставува одредување на припадност на елементи од податочно множество во дадено множество на категории. Регресија претставува одредување на реална вредностна променлва со која опишува врската помеѓу податоците и дадена категорија. Често употребувани алгоритми се: наивен баесов класификатор, дрва за одлуки, случајни шуми, вештачки невронски мрежи, машини со носечки вектори, логистичка регресија и тн. 
+Во ненадгледува учење се обидуваме да инференцираме одредена податочна структура од податоците без да внесеме во алгоритамот било какво експлицитно знаењер. Најчест проблеми који се решаваат со ненадгледувано учење се кластерирање и одредување на асоцијации помеѓу елементи. Често употребувани алгоритми се к-средини, к-медијани, анализа на главни компоненти, аутоенкодер и тн.
+
 \section{Длабоко учење}
 
-\section{Невонски мрежи}
+Длабоко учење е дел од машинско учење во кој се користат длабоки невронски мрежи инспирирани од физиологијата на нервните клетки и нервниот систем на човекот. Длабоко во „Длабоко учење“ доаѓа од бројот на слоеви во невронските мрежи, кој секогаш е 2 или повеќе. Предноста на ваквите алгоритми е нивната способност за самостојно екстрахирање дескриптори и атрибути од податоците, на повеќе нивоа на апстракција, со кои податоците ќе бидат соодветно опишани. Длабочината на мрежите влијае директно врз нивната експресивност. За разлика од другите типови на алгоритми за машинско учење кои што постигнуваат плато во перформансите со одредено количество на податци, длабоките невронски мрежи имаат се подобри перформанси како се зголемува податочното множество со кои ги тренираме. Единствено ограничување за скалирање на процесот на тренирање при работа со големо податочно множество се пресметковните и мемориските способности на хардверот кој се користи.
+Според Џошуа Бенџио: „Алгоритмите за длабоко учење се методи за учење на податочна репрезентација со повеќе нивоа, кои се добиваат со композиција на едноставни не-лениеарни модули коишто ја трансформираат репрезентацијата на податоците од едно ниво (почнувајќи од сиров влез) во репрезентации на повисоко, поабстрактно ниво. Главниот аспект на длабоко учење е тоа што учењето на атрибутите не е специфицирано од страна на човечки учител, туку се учи од податоците со примена на општи процедури за учење.“
+ 
+\section{Длабоки невонски мрежи}
 
 \cite{Sturm2016} A deep neural network is one that has more than one hidden layer of units (neurons) between its input and output layers [25]. Essentially, a neural network transforms an input by a series of cascaded non-linear operations. A recurrent neural network (RNN) is any neural network possessing a directed connection from the output of at least one unit into the input of another unit located at a shallower layer than itself (closer to the input). A deep RNN is a stack of several RNN layers, where each hidden layer generates an output sequence that is then used as a sequential input for the deeper layer. With deeper architectures, one expects each layer of the network to be able to learn higher level representations of the input data and its short- and long-term relationships.
 The recurrence (feedback) present in an RNN allows it to take into account
 its past inputs together with new inputs. Essentially, an RNN predicts a sequence of symbols given an input sequence. Training it entails modifying the parame- ters of its transformations to diminish its prediction error for a dataset of known sequences. The basic recurrent structure, however, presents problems related to exploding and vanishing gradients during the training procedure [20, 30], which can result in a lack of convergence of solutions. These problems can be circum- vented by defining the hidden layer activation function in a smart way. One such approach defines long short term memory (LSTM) “cells”, which increases the number of parameters to be estimated in training, but controls the flow of information in and out of each cell to greatly help with convergence [16, 21]. Though RNN and LSTM are not new, recent advances in efficient training
-algorithms and the prevalence of data have led to great success when they are applied to sequential data processing in many domains, e.g., continuous hand- writing [15], speech recognition [16], and machine translation [35]. In the next subsection, we describe past applications of recurrent networks to music tran- scription modelling and generation.
+algorithms and the prevalence of data have led to great success when they are applied to sequential data processing in many domains, e.g., continuous hand- writing [15], speech recognition [16], and machine translation [35]. In the next subsection, we describe past applications of recurrent networks to music transcription modelling and generation.
   
-\section{Рекурентни невронски мрежи}
-
-\section{ЛСТМ}
  
-\section{Конволуциски мрежи}
- 
-\section{Енкодер-Декодер / Авто енкодер}
-
 \section{Учење на секвенци}
 
+What is sequence-to-sequence learning?
+Applications are speech recognition, machine translation, image captioning and question answering.
+Sequence to sequence learning:
+Try to learn a mapping from one sequence to another sequence
+Examples include
+Machine translation (MT)
+Automatic speech recognition (ASR)
+Speech synthesis (TTS)
+Handwriting generation
+
+Sequence-to-sequence learning (Seq2Seq) is about training models to convert sequences from one domain (e.g. sentences in English) to sequences in another domain (e.g. the same sentences translated to French).
+"the cat sat on the mat" -> [Seq2Seq model] -> "le chat etait assis sur le tapis"
+This can be used for machine translation or for free-from question answering (generating a natural language answer given a natural language question) -- in general, it is applicable any time you need to generate text. There are multiple ways to handle this task, either using RNNs or using 1D convnets. Here we will focus on RNNs.
+
+Sequence learning problems are used to better understand the different types of sequence learning. There are four basic sequence learning problems: sequence prediction, sequence generation, sequence recognition, and sequential decision making. These “problems” show how sequences are formulated. They show the patterns sequences follow and how these different sequence learning problems are related to each other.
+Sequence prediction attempts to predict the next immediate element of a sequence based on all the preceding elements. Sequence generation is basically the same as sequence prediction: an attempt to piece together a sequence one by one the way it naturally occurs. Sequence recognition takes certain criteria and determines whether the sequence is legitimate. Sequential decision making or sequence generation through actions breaks down into three variations: goal-oriented, trajectory-oriented, and reinforcement-maximizing. These three variations all want to pick the action(s) or step(s) that will lead to the goal in the future.[5]
+These sequence learning problems reflect hierarchical organization of plans because each element in the sequences builds on the previous elements. 
+
+\section{Рекурентни невронски мрежи}
+
+WIKIPEDIA:  A recurrent neural network (RNN) is a class of artificial neural network where connections between nodes form a directed graph along a sequence. This allows it to exhibit temporal dynamic behavior for a time sequence. Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs. This makes them applicable to tasks such as unsegmented, connected handwriting recognition[1] or speech recognition.[2][3]
+The term "recurrent neural network" is used indiscriminately to refer to two broad classes of networks with a similar general structure, where one is finite impulse and the other is infinite impulse. Both classes of networks exhibit temporal dynamic behavior.[4] A finite impulse recurrent network is a directed acyclic graph that can be unrolled and replaced with a strictly feedforward neural network, while an infinite impulse recurrent network is a directed cyclic graph that can not be unrolled.
+Both finite impulse and infinite impulse recurrent networks can have additional stored state, and the storage can be under direct control by the neural network. The storage can also be replaced by another network or graph, if that incorporates time delays or has feedback loops. Such controlled states are referred to as gated state or gated memory, and are part of long short-term memorys (LSTMs) and gated recurrent units. 
+
+
+    Recurrent Neural Networks
+        Fully Recurrent Networks
+        Recursive Neural Networks
+        Neural History Compressor
+    Long Short-Term Memory Networks
+    Gated Recurrent Unit Neural Networks
+    Neural Turing Machines
+
+Fully Recurrent Networks
+The layered topology of a multilayer Perceptron is preserved, but every element has a weighted connection to every other element in the architecture and has a single feedback connection to itself.
+Not all connections are trained and the extreme non-linearity of the error derivatives means conventional Backpropagation will not work, and so Backpropagation Through Time approaches or Stochastic Gradient Descent is employed.
+
+Recurrent neural networks are linear architectural variant of recursive networks.
+Recursion promotes branching in hierarchical feature spaces and the resulting network architecture mimics this as training proceeds.
+Training is achieved with Gradient Descent by sub-gradient methods.
+Recurrent neural networks are a type of neural network where outputs from previous time steps are taken as inputs for the current time step.
+
+Backpropagation Through Time, or BPTT, is the training algorithm used to update weights in recurrent neural networks like LSTMs.
+The mathematical method used to calculate derivatives and an application of the derivative chain rule.
+The training algorithm for updating network weights to minimize error.
+It is a supervised learning algorithm that allows the network to be corrected with regard to the specific errors made.
+The general algorithm is as follows:
+    Present a training input pattern and propagate it through the network to get an output.
+    Compare the predicted outputs to the expected outputs and calculate the error.
+    Calculate the derivatives of the error with respect to the network weights.
+    Adjust the weights to minimize the error.
+    Repeat.
+
+A recurrent neural network is shown one input each timestep and predicts one output.
+Conceptually, BPTT works by unrolling all input timesteps. Each timestep has one input timestep, one copy of the network, and one output. Errors are then calculated and accumulated for each timestep. The network is rolled back up and the weights are updated.
+Spatially, each timestep of the unrolled recurrent neural network may be seen as an additional layer given the order dependence of the problem and the internal state from the previous timestep is taken as an input on the subsequent timestep.
+We can summarize the algorithm as follows:
+    Present a sequence of timesteps of input and output pairs to the network.
+    Unroll the network then calculate and accumulate errors across each timestep.
+    Roll-up the network and update weights.
+    Repeat.
+BPTT can be computationally expensive as the number of timesteps increases.
+Truncated Backpropagation Through Time, or TBPTT, is a modified version of the BPTT training algorithm for recurrent neural networks where the sequence is processed one timestep at a time and periodically (k1 timesteps) the BPTT update is performed back for a fixed number of timesteps (k2 timesteps).
+
+We can summarize the algorithm as follows:
+    Present a sequence of k1 timesteps of input and output pairs to the network.
+    Unroll the network then calculate and accumulate errors across k2 timesteps.
+    Roll-up the network and update weights.
+    Repeat
+
+The TBPTT algorithm requires the consideration of two parameters:
+    k1: The number of forward-pass timesteps between updates. Generally, this influences how slow or fast training will be, given how often weight updates are performed.
+    k2: The number of timesteps to which to apply BPTT. Generally, it should be large enough to capture the temporal structure in the problem for the network to learn. Too large a value results in vanishing gradients.
+
+In keras k1=k2 by default, and cannot be changed.
+
+Exploding/Vanishing gradient
+
+What Are Exploding Gradients?
+An error gradient is the direction and magnitude calculated during the training of a neural network that is used to update the network weights in the right direction and by the right amount. In deep networks or recurrent neural networks, error gradients can accumulate during an update and result in very large gradients. These in turn result in large updates to the network weights, and in turn, an unstable network. At an extreme, the values of weights can become so large as to overflow and result in NaN values.
+The explosion occurs through exponential growth by repeatedly multiplying gradients through the network layers that have values larger than 1.0.
+n deep multilayer Perceptron networks, exploding gradients can result in an unstable network that at best cannot learn from the training data and at worst results in NaN weight values that can no longer be updated.
+In recurrent neural networks, exploding gradients can result in an unstable network that is unable to learn from training data and at best a network that cannot learn over long input sequences of data.
+
+\section{ЛСТМ}
+
+Long Short-Term Memory (LSTM)
+
+Long short-term memory (LSTM) units use a linear unit with a self-connection with a constant weight of 1.0. This allows a value (forward pass) or gradient (backward pass) that flows into this self-recurrent unit to be preserved indefinitely (inputs or errors multiplied by 1.0 still have same value; thus, the output or error of the previous time step is the same as the output for the next time step) so that the value or gradient can be retrieved exactly at the time step when it is needed most. This self-recurrent unit, the memory cell, provides a kind of memory which can store information which lies dozen of time-steps in the past. This is very powerful for many tasks, for example for text data, an LSTM unit can store information contained in the previous paragraph and apply this information to a sentence in the current paragraph.
+Additionally, a common problem in deep networks is the “vanishing gradient” problem, where the gradient gets smaller and smaller with each layer until it is too small to affect the deepest layers. With the memory cell in LSTMs, we have continuous gradient flow (errors maintain their value) which thus eliminates the vanishing gradient problem and enables learning from sequences which are hundreds of time steps long.
+However, sometimes we want to throw away information in the memory cell and replace it with newer, more relevant information. At the same time, we do not want to confuse the rest of the network by releasing unnecessary information into the network. To solve this problem, the LSTM unit has a forget gate which deletes the information in the self-recurrent unit without releasing the information into the network (see Figure 1). In this way, we can throw away information without causing confusion and make room for a new memory. The forget gate does this by multiplying the value of the memory cell by a number between 0 (delete) and 1 (keep everything). The exact value is determined by the current input and the LSTM unit output of the previous time step.
+At other times, the memory cell contains a   that needs to be kept intact for many time steps. To do this LSTM adds another gate, the input or write gate, which can be closed so that no new information flows into the memory cell (see Figure 1). This way the data in the memory cell is protected until it is needed.
+Another gate manipulates the output from the memory cell by multiplying the output of the memory cell by a number between 0 (no outputs) and 1 (preserve output) (see Figure 1). This gate may be useful if multiple memories compete against each other: A memory cell might say “My memory is very important right now! So I release it now!” but the network might say: “Your memory is important, true, but other memory cells have much more important memories than you do! So I send small values to your output gate which will turn you off and large values to the other output gates so that the more important memories win!”
+The connectivity of an LSTM unit may seem a bit complicated at first, and you will need some time to understand it. However, if you isolate all the parts you can see that the structure is essentially the same as in normal recurrent neural networks, in which inputs and recurrent weights flow to all gates, which in turn are connected to the self-recurrent memory cell.
+To dive deeper into LSTM and make sense of the whole architecture I recommend reading LSTM: A Search Space Odyssey and the original LSTM paper.
+ 
+Long Short-Term Memory Networks
+With conventional Back-Propagation Through Time (BPTT) or Real Time Recurrent Learning (RTTL), error signals flowing backward in time tend to either explode or vanish.
+The temporal evolution of the back-propagated error exponentially depends on the size of the weights. Weight explosion may lead to oscillating weights, while in vanishing causes learning to bridge long time lags and takes a prohibitive amount of time, or does not work at all.
+    LSTM is a novel recurrent network architecture training with an appropriate gradient-based learning algorithm.
+    LSTM is designed to overcome error back-flow problems. It can learn to bridge time intervals in excess of 1000 steps.
+    This true in presence of noisy, incompressible input sequences, without loss of short time lag capabilities.
+Error back-flow problems are overcome by an efficient, gradient-based algorithm for an architecture enforcing constant (thus neither exploding nor vanishing) error flow through internal states of special units. These units reduce the effects of the “Input Weight Conflict” and the “Output Weight Conflict.”
+The Input Weight Conflict: Provided the input is non-zero, the same incoming weight has to be used for both storing certain inputs and ignoring others, then will often receive conflicting weight update signals.
+These signals will attempt to make the weight participate in storing the input and protecting the input. This conflict makes learning difficult and calls for a more context-sensitive mechanism for controlling “write operations” through input weights.
+The Output Weight Conflict: As long as the output of a unit is non-zero, the weight on the output connection from this unit will attract conflicting weight update signals generated during sequence processing.
+These signals will attempt to make the outgoing weight participate in accessing the information stored in the processing unit and, at different times, protect the subsequent unit from being perturbed by the output of the unit being fed forward.
+These conflicts are not specific to long-term lags and can equally impinge on short-term lags. Of note though is that as lag increases, stored information must be protected from perturbation, especially in the advanced stages of learning.
+Network Architecture: Different types of units may convey useful information about the current state of the network. For instance, an input gate (output gate) may use inputs from other memory cells to decide whether to store (access) certain information in its memory cell.
+Memory cells contain gates. Gates are specific to the connection they mediate. Input gates work to remedy the Input Weight Conflict while Output Gates work to eliminate the Output Weight Conflict.]
+Gates: Specifically, to alleviate the input and output weight conflicts and perturbations, a multiplicative input gate unit is introduced to protect the memory contents stored from perturbation by irrelevant inputs and a multiplicative output gate unit protects other units from perturbation by currently irrelevant memory contents stored.
+Connectivity in LSTM is complicated compared to the multilayer Perceptron because of the diversity of processing elements and the inclusion of feedback connections.
+Memory cell blocks: Memory cells sharing the same input gate and the same output gate form a structure called a “memory cell block”.
+Memory cell blocks facilitate information storage; as with conventional neural nets, it is not so easy to code a distributed input within a single cell. A memory cell block of size 1 is just a simple memory cell.
+Learning: A variant of Real Time Recurrent Learning (RTRL) that takes into account the altered, multiplicative dynamics caused by input and output gates is used to ensure non-decaying error back propagated through internal states of memory cells errors arriving at “memory cell net inputs” do not get propagated back further in time.
+Guessing: This stochastic approach can outperform many term lag algorithms. It has been established that many long-time lag tasks used in previous work can be solved more quickly by simple random weight guessing than by the proposed algorithms.
+LSTM Advantages
+The algorithms ability to bridge long time lags is the result of constant error Backpropagation in the architecture’s memory cells.
+LSTM can approximate noisy problem domains, distributed representations, and continuous values.
+LSTM generalizes well over problem domains considered. This is important given some tasks are intractable for already established recurrent networks.
+Fine tuning of network parameters over the problem domains appears to be unnecessary.
+In terms of update complexity per weight and time steps, LSTM is essentially equivalent to BPTT.
+LSTMs are showing to be powerful, achieving state-of-the-art results in domains like machine translation.
+ 
+ 
+LSTMs can be used as a generative model.
+Given a large corpus of sequence data, such as text documents, LSTM models can be designed to learn the general structural properties of the corpus, and when given a seed input, can generate new sequences that are representative of the original corpus.
+The problem of developing a model to generalize a corpus of text is called language modeling in the field of natural language processing. A language model may work at the word level and learn the probabilistic relationships between words in a document in order to accurately complete a sentence and generate entirely new sentences. At its most challenging, language models work at the character level, learning from sequences of characters, and generating new sequences one character at a time. 
+Although more challenging, the added flexibility of a character-level model allows new words to be generated, punctuation added, and the generation of any other structures that may exist in the text data.
+
+\section{Конволуциски мрежи}
+
+\section{Енкодер-Декодер / Авто енкодер}
+
+Encoder-Decoder Architecture for NMT
+The Encoder-Decoder architecture with recurrent neural networks has become an effective and standard approach for both neural machine translation (NMT) and sequence-to-sequence (seq2seq) prediction in general.
+The key benefits of the approach are the ability to train a single end-to-end model directly on source and target sentences and the ability to handle variable length input and output sequences of text.
+As evidence of the success of the method, the architecture is the core of the Google translation service.
+Sutskever NMT Model \cite{Sutskever2014}
+Deep Neural Networks (DNNs) are powerful models that have achieved excellent performance on difficult learning tasks. Although DNNs work well whenever large labeled training sets are available, they cannot be used to map sequences to sequences.  In this paper, we present a general end-to-end ap proach to sequence learning that makes minimal assumptions on the sequence structure. Our method uses a multilayered Long Short-Term Memory (LSTM) to map the input sequence to a vector of a fixed dimensionality, and then another deep LSTM to decode the target sequence from the vector.  Our main result is that on an English to French translation task from the WMT’14 dataset, the translations produced by the LSTM achieve a BLEU score of 34.8 on the entire test set,  where the LSTM’s BLEU score was penalized on out-of-vocabulary words. Additionally, the LSTM did not have difficulty on long sentences.  For comparison, a phrasebased SMT system achieves a BLEU score of 33.3 on the same dataset.  When we used the LSTM to rerank the 1000 hypotheses produced by the aforementioned SMT system, its BLEU score increases to 36.5, which is close to the previous b est result on this task.  The LSTM also learned sensible phrase and sentence representations that are sensitive to word order and are relatively invariant to the active and the passive voice.  Finally, we found that reversing the order of the words in all source sentences (but not target sentences) improved the LSTM’s performance markedly, because doing so introduced many short term dependencies between the source and the target sentence which made the optimization problem easier.
+
+In this section, we will look at the neural machine translation model developed by Ilya Sutskever, et al. as described in their 2014 paper “Sequence to Sequence Learning with Neural Networks“. We will refer to it as the “Sutskever NMT Model“, for lack of a better name.
+This is an important paper as it was one of the first to introduce the Encoder-Decoder model for machine translation and more generally sequence-to-sequence learning.
+The model was applied to English to French translation, specifically the WMT 2014 translation task.
+The translation task was processed one sentence at a time, and an end-of-sequence (<EOS>) token was added to the end of output sequences during training to signify the end of the translated sequence. This allowed the model to be capable of predicting variable length output sequences.
+    Note that we require that each sentence ends with a special end-of-sentence symbol “<EOS>”, which enables the model to define a distribution over sequences of all possible lengths.
+The model was trained on a subset of the 12 Million sentences in the dataset, comprised of 348 Million French words and 304 Million English words. This set was chosen because it was pre-tokenized.
+The source vocabulary was reduced to the 160,000 most frequent source English words and 80,000 of the most frequent target French words. All out-of-vocabulary words were replaced with the “UNK” token.
+Model
+An Encoder-Decoder architecture was developed where an input sequence was read in entirety and encoded to a fixed-length internal representation.
+A decoder network then used this internal representation to output words until the end of sequence token was reached. LSTM networks were used for both the encoder and decoder.
+    The idea is to use one LSTM to read the input sequence, one timestep at a time, to obtain large fixed-dimensional vector representation, and then to use another LSTM to extract the output sequence from that vector
+The final model was an ensemble of 5 deep learning models. A left-to-right beam search was used during the inference of the translations.
+
+Cho NMT Model \cite{Cho2014}
+In this section, we will look at the neural machine translation system described by Kyunghyun Cho, et al. in their 2014 paper titled “Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation.” We will refer to it as the “Cho NMT Model” model for lack of a better name.
+Importantly, the Cho Model is used only to score candidate translations and is not used directly for translation like the Sutskever model above. Although extensions to the work to better diagnose and improve the model do use it directly and alone for translation.
+he model uses the same two-model approach, here giving it the explicit name of the encoder-decoder architecture. called RNN Encoder–Decoder that consists of two recurrent neural networks (RNN). One RNN encodes a sequence of symbols into a fixed-length vector representation, and the other decodes the representation into another sequence of symbols. 
+In  this  paper,  we  propose  a  novel  neural network model called RNN Encoder–Decoder  that  consists  of  two  recurrent neural  networks  (RNN).  One  RNN  encodes a sequence of symbols into a fixed length vector representation, and the other decodes the representation into another sequence of symbols.  The encoder and decoder  of  the  proposed  model  are  jointly trained to maximize the conditional probability of a target sequence given a source sequence.   The performance of a statistical machine translation system is empirically found to improve by using the conditional probabilities of phrase pairs computed by the RNN Encoder–Decoder as an additional feature in the existing log-linear model.    Qualitatively,  we  show  that  the proposed model learns a semantically and syntactically meaningful representation of linguistic phrases
+
+
 \section{Embedding: word and latent space}
+
+Word embeddings are a type of word representation that allows words with similar meaning to have a similar representation.
+They are a distributed representation for text that is perhaps one of the key breakthroughs for the impressive performance of deep learning methods on challenging natural language processing problems.
+
+"One of the benefits of using dense and low-dimensional vectors is computational: the majority of neural network toolkits do not play well with very high-dimensional, sparse vectors. … The main benefit of the dense representations is generalization power: if we believe some features may provide similar clues, it is worthwhile to provide a representation that is able to capture these similarities."
+
+Word embeddings are in fact a class of techniques where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network, and hence the technique is often lumped into the field of deep learning.
+Key to the approach is the idea of using a dense distributed representation for each word.
+Each word is represented by a real-valued vector, often tens or hundreds of dimensions. This is contrasted to the thousands or millions of dimensions required for sparse word representations, such as a one-hot encoding.
+
+The distributed representation is learned based on the usage of words. This allows words that are used in similar ways to result in having similar representations, naturally capturing their meaning. This can be contrasted with the crisp but fragile representation in a bag of words model where, unless explicitly managed, different words have different representations, regardless of how they are used.
+
+1. Embedding Layer
+
+An embedding layer, for lack of a better name, is a word embedding that is learned jointly with a neural network model on a specific natural language processing task, such as language modeling or document classification.
+It requires that document text be cleaned and prepared such that each word is one-hot encoded. The size of the vector space is specified as part of the model, such as 50, 100, or 300 dimensions. The vectors are initialized with small random numbers. The embedding layer is used on the front end of a neural network and is fit in a supervised way using the Backpropagation algorithm.
+
+2. Word2Vec
+
+Word2Vec is a statistical method for efficiently learning a standalone word embedding from a text corpus.
+Two different learning models were introduced that can be used as part of the word2vec approach to learn the word embedding; they are:
+    Continuous Bag-of-Words, or CBOW model.
+    Continuous Skip-Gram Model.
+The CBOW model learns the embedding by predicting the current word based on its context. The continuous skip-gram model learns by predicting the surrounding words given a current word.
+The continuous skip-gram model learns by predicting the surrounding words given a current word.
+
+You have two main options when training your word embedding:
+    Learn it Standalone, where a model is trained to learn the embedding, which is saved and used as a part of another model for your task later. This is a good approach if you would like to use the same embedding in multiple models.
+    Learn Jointly, where the embedding is learned as part of a large task-specific model. This is a good approach if you only intend to use the embedding on one task.
+
+Chord2Vec a skipgram implementation of chord to vector embedding with NADEs \cite{Madjiheurem2016}
+
+If we use vectors that point to each word in this space, then each vector will consists of 3 coordinates which give the position in this space, e.g. if “cat” is (0,0,0) then “kitty” might have the coordinates (0.1,0.2,-0.3) while car has the coordinates (10,0,-15).
+This space is then a word embedding space for our vocabulary (words) above and each vector with 3 coordinates is a word embedding which we can use as input data for our algorithms.
+Typically, an embedding space contains thousands of words and more than a hundred dimensions. This space is difficult to comprehend for humans, but the property that similar words lie close together in the embedding space still holds. For machines, this is an excellent representation for words which improves results for many tasks that deal with language.
 
 \section{Gibbs sampling / Гибсово семплирање}
 

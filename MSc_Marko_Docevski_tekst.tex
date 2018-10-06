@@ -141,129 +141,57 @@ These sequence learning problems reflect hierarchical organization of plans beca
 
 \section{Рекурентни невронски мрежи}
 
-WIKIPEDIA:  A recurrent neural network (RNN) is a class of artificial neural network where connections between nodes form a directed graph along a sequence. This allows it to exhibit temporal dynamic behavior for a time sequence. Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs. This makes them applicable to tasks such as unsegmented, connected handwriting recognition[1] or speech recognition.[2][3]
-The term "recurrent neural network" is used indiscriminately to refer to two broad classes of networks with a similar general structure, where one is finite impulse and the other is infinite impulse. Both classes of networks exhibit temporal dynamic behavior.[4] A finite impulse recurrent network is a directed acyclic graph that can be unrolled and replaced with a strictly feedforward neural network, while an infinite impulse recurrent network is a directed cyclic graph that can not be unrolled.
-Both finite impulse and infinite impulse recurrent networks can have additional stored state, and the storage can be under direct control by the neural network. The storage can also be replaced by another network or graph, if that incorporates time delays or has feedback loops. Such controlled states are referred to as gated state or gated memory, and are part of long short-term memorys (LSTMs) and gated recurrent units. 
+Рекурентните невронски мрежи се варијанта на Feed-forward мрежите со внатрешна меморија (или состојба) што ги оспособува за работа со секвенцијални податоци. кај нив излезите од тековниот временски чекор се користат како влезови при наредните временски чекори. Постојат две категории на рекурентни невронски мрежи: со бесконечен и со конечен пренос на грешката наназад. Мрежите кај кои грешката се пренесува конечен број чекори наназад преставуваат насочен ацикличен граф и истите може да се разложат (или одвиткаат) на состани feed-forward подмрежи, по една за секој временски чекор за кој се пренесува импулсот, додека мрежите кај кои преносот на грешка е бесконечен се насочен цикличен граф и не може да се разложат на составни подмрежи. Меморијата во невронските ќелии се имплементира со механизам на порта (или влез) за меморија и мрежата има контрола над мемориските порти. Постојат повеќе варијанти на рекурентни невронски мрежи како на пример: целосно рекурентни невронски мрежи, рекурзивни невронски мрежи, Long Short-Term Memory мрежи, Gated Recurrent Unit мрежи и тн. 
 
+\subsection{Backpropagation Through Time}
+Рекурентните невронски мрежи се тренираат со алгоритамот Backpropagation Through Time (накратко BPTT) - Пренос на грешка назад низ времето, со кој ги ажурираме вредностите на тежиниските параметри на ќелиите. Алгоритмот може да се сумира со следните чекори:
+\begin{itemize}
+    \item Приказ на влезен примерок на мрежата и пресметка на изелзите низ сите слоеви во мрежата.
+    \item Споредба на добиениот излез од крајниот слој и коректниот излез и пресметка на грешка.
+    \item Пресметка на изводите на грешката во однос на тежинските параметри на мрежата.
+    \item Промена на тежинските параметри на мрежата со цел намалување на пресметаната грешка.
+    \item Повторување.
+\end{itemize}
 
-    Recurrent Neural Networks
-        Fully Recurrent Networks
-        Recursive Neural Networks
-        Neural History Compressor
-    Long Short-Term Memory Networks
-    Gated Recurrent Unit Neural Networks
-    Neural Turing Machines
+За секвенца со должина N временски чекори, RNN работат така што ја одвиткува мрежата за секој временски чекор, и за секој има еден влезен елемент и една копија од мрежата. Грешките се пресметуваат чекор по чекор, а потоа се пресметува кумулативна грешка за секвенцата и мрежата се замотува и се извршува промената на тежинските параметри со цел намалување на пресметаната кумулативна грешка. Пресметковната комплексност на алгоритамот расте со бројот на временски чекори во секвенците што се обработуваат. 
 
-Fully Recurrent Networks
-The layered topology of a multilayer Perceptron is preserved, but every element has a weighted connection to every other element in the architecture and has a single feedback connection to itself.
-Not all connections are trained and the extreme non-linearity of the error derivatives means conventional Backpropagation will not work, and so Backpropagation Through Time approaches or Stochastic Gradient Descent is employed.
+\subsection{Truncated Backpropagation Through Time}
 
-Recurrent neural networks are linear architectural variant of recursive networks.
-Recursion promotes branching in hierarchical feature spaces and the resulting network architecture mimics this as training proceeds.
-Training is achieved with Gradient Descent by sub-gradient methods.
-Recurrent neural networks are a type of neural network where outputs from previous time steps are taken as inputs for the current time step.
+Поради директната зависност на пресметковната комплексност на дожините на секвенците не практично е да се тренираат RNN модели со долги секвенци. Truncated Backpropagation Through Time (накратко TBPTT) - Скратен пренос на грешка назад низ времето е апроксимативна верзија на BPTT алгоритамот со кој се решава проблемот на пресметковна комплексност. Кај него секвенцата се обработува само чекор по чекор, при што ажурирањето на тежинските параметри се врши на секои k1 временски чекори, при што грешката се пресметува за последните k2 временски чекори. Алгоритамот може да се сумира на следните чекори:
+\begin{itemize}
+    \item Приказ на мрежата на секвенца од k1 број временски чекори и пресметка на нивните излези.
+    \item Одвиткување на мрежата и пресметка на акумулирана грешка за k2 временски чекори наназад.
+    \item Завиткување на мрежата и ажурирање на тежинските параметри.
+    \item Повторување.
+\end{itemize}
 
-Backpropagation Through Time, or BPTT, is the training algorithm used to update weights in recurrent neural networks like LSTMs.
-The mathematical method used to calculate derivatives and an application of the derivative chain rule.
-The training algorithm for updating network weights to minimize error.
-It is a supervised learning algorithm that allows the network to be corrected with regard to the specific errors made.
-The general algorithm is as follows:
-    Present a training input pattern and propagate it through the network to get an output.
-    Compare the predicted outputs to the expected outputs and calculate the error.
-    Calculate the derivatives of the error with respect to the network weights.
-    Adjust the weights to minimize the error.
-    Repeat.
+Со параметрите k1 и k2 ги дефинираме перформансите на мрежата. Со k1 се условува колку брзо ќе се тренира мрежата т.е. колку често ќе се ажурираат нејзините тежински параметри, а k2 условува колкав ќе биде прозорецот за гледање наназад во секвенцта, т.е. колку од секвенцата може да види при секој временски чекор мрежата. Поголема вредност за k2 овозможува повеќе можност за учење на глобална структура, меѓутоа со преголемо зголемување често мрежата губи секакви можности за учење така што се нулираат градиентите на тежинските параметри.
 
-A recurrent neural network is shown one input each timestep and predicts one output.
-Conceptually, BPTT works by unrolling all input timesteps. Each timestep has one input timestep, one copy of the network, and one output. Errors are then calculated and accumulated for each timestep. The network is rolled back up and the weights are updated.
-Spatially, each timestep of the unrolled recurrent neural network may be seen as an additional layer given the order dependence of the problem and the internal state from the previous timestep is taken as an input on the subsequent timestep.
-We can summarize the algorithm as follows:
-    Present a sequence of timesteps of input and output pairs to the network.
-    Unroll the network then calculate and accumulate errors across each timestep.
-    Roll-up the network and update weights.
-    Repeat.
-BPTT can be computationally expensive as the number of timesteps increases.
-Truncated Backpropagation Through Time, or TBPTT, is a modified version of the BPTT training algorithm for recurrent neural networks where the sequence is processed one timestep at a time and periodically (k1 timesteps) the BPTT update is performed back for a fixed number of timesteps (k2 timesteps).
+\subsection{Експлодирачки / нулирачки градиент}
 
-We can summarize the algorithm as follows:
-    Present a sequence of k1 timesteps of input and output pairs to the network.
-    Unroll the network then calculate and accumulate errors across k2 timesteps.
-    Roll-up the network and update weights.
-    Repeat
+Голем проблем кај рекурерентните невронски мрежи претставуваат експлодирачкиот и нулирачкиот градиент. И двата проблеми доаѓаат од начинот на пресметка на грешка и ажурирање на тежините. Грешката се пресметува при секој временски чекор, а градиентите на грешка се мултиплицираат. Доколку се појавува често вредност поголема од 1.0, вредностите на градиентот скокаат брзо и мрежата станува нестабилна. Ако има повеќе такви градиенти еден по друг акумулираната вредност може да стане и поголема од капацитетот за целобројни вредности на машината реултирајќи во overflow и NaN вредности. Ова појава се нарекува експлодирачки градиент. Нулирачки градиент е пак спротивно кога вредностите на градиентот на грешка се премали, па тежинските параметри на одредени (или дури сите) ќелии во мрежата постануваат нула, што ефективно ги прави мртви (или неактивни). Експлодирачкиот и нулирачкиот градиент влијаат на способноста на мрежата да учи долги секвенци. Еден од начините да се намали нивното влијание е да се ограничи бројот на чекори за који се акумулира (пресметува) градиентот на грешка.
 
-The TBPTT algorithm requires the consideration of two parameters:
-    k1: The number of forward-pass timesteps between updates. Generally, this influences how slow or fast training will be, given how often weight updates are performed.
-    k2: The number of timesteps to which to apply BPTT. Generally, it should be large enough to capture the temporal structure in the problem for the network to learn. Too large a value results in vanishing gradients.
+\section{Long Short-Term Memory }
 
-In keras k1=k2 by default, and cannot be changed.
+Long Short-Term Memory (накратко LSTM) - Долга краткотрајна меморија, е една од пософистицираните варијанти на ќелии за рекурентни невронски мрежи, кои се обидуваат да го решат проблемот на експлодирачки/нулирачки градиент, а воедо воведува и можност за учење на произволно долги секвенци. Секоја LSTM ќелија има константна рекурентна врска, со тежински параметер константно поставен на 1.0. Ова врска и дава мемориски капацитет на ќелијата и овозможува константен пренос на градиентот на грешка, што ја штити ќелијата од нулирачки градиент. 
+LSTM ќелиите има 3 карактеристични порти кои го управуваат нејзиното работење: порта за заборавање, порта за модификација и порта за излез. Во одредени ситации е корисно ќелијата да го "заборави" тоа што го има во својата меморија, како на пример кога содржи ирелевантни или застарени податоци. За таа цел LSTM ќелиите имаа влез за заборавање, кој што прима вредност од 0 или 1. Содржината на ќелијата се множи со таа вредност, па така кога е 0 ќелијата практично заборава се, а кога е 1 помни се. Нема множност за парцијална модификација на вредноста. Наспроти ова, во ситуации кога содржината на ќелијата треба да биде заштитена од модификација во одреден временски чекор, се користи порта за модификација. Со неа може да се заштити содржината на ќелијата повеќе временски чекори, овозможувајќи користење на информации во тековниот временски чекор од пред произволем број временски чекори. Последната порта, портата за излез овозможува игнорирање на излезот од ќелијата. Ова е корисно во ситуации каде повеќе ќелии би имале релевантна информација, но некои од нив имаа хипотетички порелевантна информација, па тие што не се толку релевантни излезот им го игнорира мрежата со користење на портата за излез.
 
-Exploding/Vanishing gradient
+(ДИЈАГРАМ ОД ЛСТМ ЌЕЛИЈА)
 
-What Are Exploding Gradients?
-An error gradient is the direction and magnitude calculated during the training of a neural network that is used to update the network weights in the right direction and by the right amount. In deep networks or recurrent neural networks, error gradients can accumulate during an update and result in very large gradients. These in turn result in large updates to the network weights, and in turn, an unstable network. At an extreme, the values of weights can become so large as to overflow and result in NaN values.
-The explosion occurs through exponential growth by repeatedly multiplying gradients through the network layers that have values larger than 1.0.
-n deep multilayer Perceptron networks, exploding gradients can result in an unstable network that at best cannot learn from the training data and at worst results in NaN weight values that can no longer be updated.
-In recurrent neural networks, exploding gradients can result in an unstable network that is unable to learn from training data and at best a network that cannot learn over long input sequences of data.
+Овие карактеристи ги прават мрежите изградени од LSTM ќелии способни за работа со доста долги секвенци, со должини поголеми и од 1000 елементи, како и со работа со секвенци со произволна должина, со секвенци во кои има доста шум, секвенци кои што не може едноставно да се компресираат и тн.
 
-\section{ЛСТМ}
+\section{Вградување на зборови во латентен простор}
 
-Long Short-Term Memory (LSTM)
+При работа со податочни множества каде што има голем број на уникатни влези елементи, категоричната репрезентација на влезните елементи, т.н. 1-hot вектор (бинарен вектор со должина еднаква на бројот на уникатни влезни елементи, каде што само една позиција има вредност 1 а сите останати 0, а тоа е позицијата на влезниот елемент во подреденото множество на уникатни влезни елементи) има драстично влијание врз перформансите на моделите за машинско учење. Таквите вектори се екстремно ретки и причинуваат пресметко проблеми со денешните алатки за машинско учење бидејќи ниедна нема ефикасна репрезентација на ретки вектори и матрици. 
+Едно практично решеније на овој проблем претставува вградувањето во латентен простор. Елементите од оригиналното множество ги претставуваме со многу пократок вектор со фиксна должина, Овој вектор се состои само од реални вредности, и претставува компресирана и дистрибуирана репрезентација на оригиналниот влезен вектор. Овој вектор и процесот на вградување може да се изведе со невронски мрежи, и според начинот на кој ќе се тренира мрежата во него може да се врадат различни семантички информации за влезното множество. Големината на векторот на вградување обично се движи помеѓи десетици и стотици елементи.
+Вградувањето може да се тренира одделно или како дел од главниот модел за машинско учење за кој е наменето. Одделното тренирање е добро доколку има потреба од реискористување на вградувањето за други модели, бидејќи може да се зачува како компонента. Од друга страна ако не се планира користење надвор од моделот, тренирањето како дел од моделот е поедноставно и попрактично.
+Наједноставна имплементација на врадувањето е со користење на 
 
-Long short-term memory (LSTM) units use a linear unit with a self-connection with a constant weight of 1.0. This allows a value (forward pass) or gradient (backward pass) that flows into this self-recurrent unit to be preserved indefinitely (inputs or errors multiplied by 1.0 still have same value; thus, the output or error of the previous time step is the same as the output for the next time step) so that the value or gradient can be retrieved exactly at the time step when it is needed most. This self-recurrent unit, the memory cell, provides a kind of memory which can store information which lies dozen of time-steps in the past. This is very powerful for many tasks, for example for text data, an LSTM unit can store information contained in the previous paragraph and apply this information to a sentence in the current paragraph.
-Additionally, a common problem in deep networks is the “vanishing gradient” problem, where the gradient gets smaller and smaller with each layer until it is too small to affect the deepest layers. With the memory cell in LSTMs, we have continuous gradient flow (errors maintain their value) which thus eliminates the vanishing gradient problem and enables learning from sequences which are hundreds of time steps long.
-However, sometimes we want to throw away information in the memory cell and replace it with newer, more relevant information. At the same time, we do not want to confuse the rest of the network by releasing unnecessary information into the network. To solve this problem, the LSTM unit has a forget gate which deletes the information in the self-recurrent unit without releasing the information into the network (see Figure 1). In this way, we can throw away information without causing confusion and make room for a new memory. The forget gate does this by multiplying the value of the memory cell by a number between 0 (delete) and 1 (keep everything). The exact value is determined by the current input and the LSTM unit output of the previous time step.
-At other times, the memory cell contains a   that needs to be kept intact for many time steps. To do this LSTM adds another gate, the input or write gate, which can be closed so that no new information flows into the memory cell (see Figure 1). This way the data in the memory cell is protected until it is needed.
-Another gate manipulates the output from the memory cell by multiplying the output of the memory cell by a number between 0 (no outputs) and 1 (preserve output) (see Figure 1). This gate may be useful if multiple memories compete against each other: A memory cell might say “My memory is very important right now! So I release it now!” but the network might say: “Your memory is important, true, but other memory cells have much more important memories than you do! So I send small values to your output gate which will turn you off and large values to the other output gates so that the more important memories win!”
-The connectivity of an LSTM unit may seem a bit complicated at first, and you will need some time to understand it. However, if you isolate all the parts you can see that the structure is essentially the same as in normal recurrent neural networks, in which inputs and recurrent weights flow to all gates, which in turn are connected to the self-recurrent memory cell.
-To dive deeper into LSTM and make sense of the whole architecture I recommend reading LSTM: A Search Space Odyssey and the original LSTM paper.
- 
-Long Short-Term Memory Networks
-With conventional Back-Propagation Through Time (BPTT) or Real Time Recurrent Learning (RTTL), error signals flowing backward in time tend to either explode or vanish.
-The temporal evolution of the back-propagated error exponentially depends on the size of the weights. Weight explosion may lead to oscillating weights, while in vanishing causes learning to bridge long time lags and takes a prohibitive amount of time, or does not work at all.
-    LSTM is a novel recurrent network architecture training with an appropriate gradient-based learning algorithm.
-    LSTM is designed to overcome error back-flow problems. It can learn to bridge time intervals in excess of 1000 steps.
-    This true in presence of noisy, incompressible input sequences, without loss of short time lag capabilities.
-Error back-flow problems are overcome by an efficient, gradient-based algorithm for an architecture enforcing constant (thus neither exploding nor vanishing) error flow through internal states of special units. These units reduce the effects of the “Input Weight Conflict” and the “Output Weight Conflict.”
-The Input Weight Conflict: Provided the input is non-zero, the same incoming weight has to be used for both storing certain inputs and ignoring others, then will often receive conflicting weight update signals.
-These signals will attempt to make the weight participate in storing the input and protecting the input. This conflict makes learning difficult and calls for a more context-sensitive mechanism for controlling “write operations” through input weights.
-The Output Weight Conflict: As long as the output of a unit is non-zero, the weight on the output connection from this unit will attract conflicting weight update signals generated during sequence processing.
-These signals will attempt to make the outgoing weight participate in accessing the information stored in the processing unit and, at different times, protect the subsequent unit from being perturbed by the output of the unit being fed forward.
-These conflicts are not specific to long-term lags and can equally impinge on short-term lags. Of note though is that as lag increases, stored information must be protected from perturbation, especially in the advanced stages of learning.
-Network Architecture: Different types of units may convey useful information about the current state of the network. For instance, an input gate (output gate) may use inputs from other memory cells to decide whether to store (access) certain information in its memory cell.
-Memory cells contain gates. Gates are specific to the connection they mediate. Input gates work to remedy the Input Weight Conflict while Output Gates work to eliminate the Output Weight Conflict.]
-Gates: Specifically, to alleviate the input and output weight conflicts and perturbations, a multiplicative input gate unit is introduced to protect the memory contents stored from perturbation by irrelevant inputs and a multiplicative output gate unit protects other units from perturbation by currently irrelevant memory contents stored.
-Connectivity in LSTM is complicated compared to the multilayer Perceptron because of the diversity of processing elements and the inclusion of feedback connections.
-Memory cell blocks: Memory cells sharing the same input gate and the same output gate form a structure called a “memory cell block”.
-Memory cell blocks facilitate information storage; as with conventional neural nets, it is not so easy to code a distributed input within a single cell. A memory cell block of size 1 is just a simple memory cell.
-Learning: A variant of Real Time Recurrent Learning (RTRL) that takes into account the altered, multiplicative dynamics caused by input and output gates is used to ensure non-decaying error back propagated through internal states of memory cells errors arriving at “memory cell net inputs” do not get propagated back further in time.
-Guessing: This stochastic approach can outperform many term lag algorithms. It has been established that many long-time lag tasks used in previous work can be solved more quickly by simple random weight guessing than by the proposed algorithms.
-LSTM Advantages
-The algorithms ability to bridge long time lags is the result of constant error Backpropagation in the architecture’s memory cells.
-LSTM can approximate noisy problem domains, distributed representations, and continuous values.
-LSTM generalizes well over problem domains considered. This is important given some tasks are intractable for already established recurrent networks.
-Fine tuning of network parameters over the problem domains appears to be unnecessary.
-In terms of update complexity per weight and time steps, LSTM is essentially equivalent to BPTT.
-LSTMs are showing to be powerful, achieving state-of-the-art results in domains like machine translation.
- 
- 
-LSTMs can be used as a generative model.
-Given a large corpus of sequence data, such as text documents, LSTM models can be designed to learn the general structural properties of the corpus, and when given a seed input, can generate new sequences that are representative of the original corpus.
-The problem of developing a model to generalize a corpus of text is called language modeling in the field of natural language processing. A language model may work at the word level and learn the probabilistic relationships between words in a document in order to accurately complete a sentence and generate entirely new sentences. At its most challenging, language models work at the character level, learning from sequences of characters, and generating new sequences one character at a time. 
-Although more challenging, the added flexibility of a character-level model allows new words to be generated, punctuation added, and the generation of any other structures that may exist in the text data.
+\subsection{Word2Vec}
 
-\section{Embedding: word and latent space}
+\subsection{Chord2Vec}
 
-Word embeddings are a type of word representation that allows words with similar meaning to have a similar representation.
-They are a distributed representation for text that is perhaps one of the key breakthroughs for the impressive performance of deep learning methods on challenging natural language processing problems.
-
-"One of the benefits of using dense and low-dimensional vectors is computational: the majority of neural network toolkits do not play well with very high-dimensional, sparse vectors. … The main benefit of the dense representations is generalization power: if we believe some features may provide similar clues, it is worthwhile to provide a representation that is able to capture these similarities."
-
-Word embeddings are in fact a class of techniques where individual words are represented as real-valued vectors in a predefined vector space. Each word is mapped to one vector and the vector values are learned in a way that resembles a neural network, and hence the technique is often lumped into the field of deep learning.
-Key to the approach is the idea of using a dense distributed representation for each word.
-Each word is represented by a real-valued vector, often tens or hundreds of dimensions. This is contrasted to the thousands or millions of dimensions required for sparse word representations, such as a one-hot encoding.
-
-The distributed representation is learned based on the usage of words. This allows words that are used in similar ways to result in having similar representations, naturally capturing their meaning. This can be contrasted with the crisp but fragile representation in a bag of words model where, unless explicitly managed, different words have different representations, regardless of how they are used.
-
+Наједноста
 1. Embedding Layer
 
 An embedding layer, for lack of a better name, is a word embedding that is learned jointly with a neural network model on a specific natural language processing task, such as language modeling or document classification.

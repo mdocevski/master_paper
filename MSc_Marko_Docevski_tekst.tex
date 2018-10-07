@@ -235,102 +235,50 @@ Musical Instrument Digital Interface (накратко MIDI) е индустри
 
 \subsubsection{Текстуални формати}
 
-Текстуалните формати се идеални кандидати за обработка со користење на техники за обработка на природни јазици. Тие се состојат најчесто од секвенца на акорди или медолиска линија и пропратен текст доколку песната има текст. Успешен систем за генерирање на музика со користење на ABC форматот, којшто историски е популарен за пишување на западноевропска народна музика, може да се види во трудот \cite{Sturm2015}. 
+Текстуалните формати се идеални кандидати за обработка со користење на техники за обработка на природни јазици. Тие се состојат најчесто од секвенца на акорди или медолиска линија и пропратен текст доколку песната има текст. Успешен систем за генерирање на музика со користење на ABC форматот, којшто историски е популарен за пишување на западноевропска народна музика, може да се види во трудот \cite{Sturm2015}. Пример за песна запишана во текстуален формат, поточно акорден запис може да се види на слика \ref{fig:akordi}, извадок од „Ода на радоста“. Еден недостаток на овој тип на муички записи е интерепретабилноста, т.е. многу голем дел од деталите на изведбата не се забележи. Записот е наменет за луѓе кои ја познаваат песната, да им даде водила при изведба и полесно да може да ја научат песната. Два изведувачи, кои немаат познавања за конретка песна, може да ја изведат на сосема различни начини, пр. со различно темпо, различна метричка структура, различни времетраења на сегменти од песната и тн. Поради тоа и тешко е да се оцени перформансите на систем кој би работел со датотеки во тесктутален формат, објективно може да ги оценуваме како системи кои генерираат текст.
 
-ABC \cite{Sturm2015}
-ABC notation is a shorthand form of musical notation. In basic form it uses the letters A through G to represent the given notes, with other elements used to place added value on these - sharp, flat, the length of the note, key, ornamentation. Later, with computers becoming a major means of communication, others saw the possibilities of using this form of notation as an ASCII code that could facilitate the sharing of music online, also adding a new and simple language for software developers. In this later form it remains a language for notating music using the ASCII character set. The earlier ABC notation was built on, standardized and changed to better fit the keyboard and an ASCII character set by Chris Walshaw, with the help and input of others. Although now re-packaged in this form, the original ease of writing and reading, for memory jogs and for sharing tunes with others on a scrap of paper or a beer coaster remains, a simple and accessible form of music notation, not unlike others, such as tablature and solfège. Originally designed for use with folk and traditional tunes of Western European origin, e.g., English, Irish, Scottish, which are typically single-voice melodies that can be written on a single staff in standard notation, the work of Chris Walshaw and others has opened this up with an increased list of characters and headers in a syntax that can also support metadata for each tune.[1]
-
-ABC notation being ASCII-based, any text editor can be used to edit the music. Even so, there are now many ABC notation software packages available that offer a wide variety of features, including the ability to read and process ABC notation into MIDI files and as standard "dotted" notation. Such software is readily available for most computer systems, including Microsoft Windows, Unix/Linux, Macintosh, Palm OS, and web-based.[2]
-
-Later third-party software packages have provided direct output, bypassing the TeX typesetter,[3] and have extended the syntax to support lyrics aligned with notes,[4] multi-voice and multi-staff notation,[5] tablature,[6] and MIDI.[7]
-
-
-Chord tabs
-
-Chrods cite chord2vec
-
-A melody can be encoded in a textual representation and processed as a text. A significant example is the ABC notation [115], a de facto standard for folk and traditional music4. See at Figures 4.6 and 4.7 the original score and its associated ABC notation of a music named “A Cup of Tea”, from the repository and discussion platform The Session [56]. The first 6 lines are the header and represent metadata (e.g., T: title of the music, M:
-meter (it is actually the time signature), L: default length, K: key. . . ). It is followed by the main text representing the melody. We illustrate below some basic principles of the encoding rules (please refer to [115] for the details):
-• the pitch class5 of a note is encoded as the letter corresponding to its english notation (e.g., A for A or La);
-• its pitch is encoded as following: A corresponds to A46, a to an A one octave up and a’ to an A two octaves up;
-• the duration of a note is encoded as following: if default length is marked as 1/8 (i.e. an eighth note7
-ˇ “( – the case for this example), a corresponds to an eighth note ˇ “( , a/2 to a sixteenth note ˇ “) and a2 to a quarter note ˇ “;
-• measures (also named bars)8 are separated by | (bars). Note that the ABC notation can only represent monodic melodies. This representation
-is for instance used by Sturm in [97] (see Section 7.3.1.2). 4.3.4
-A representation of a chord could be extensional, enumerating the notes composing it, or intensional, specifying the pitch class of its root note (e.g., C, A. . . ) and its type (e.g., major, minor, dominant seventh. . . ), usually using an abbreviated jazz notation, e.g., C, D-, E7. . . 9. In most cases, the abbreviated notation is chosen, as in Jazz and popular music. In summary, a chord is usually represented by a pair < pitchclass,type >, where pitch
-class ∈ {A, A?10, B, . . . , G, G?} and the set of possible types is predefined (e.g., {+, -, 7, -7, +, -7(?5), 11, ?13(?9). . .}). Note that the way, standard in Jazz, to indicate a note other than the root (of the chord) as to be played by the bass (e.g., A-7/E11) is an additional issue most of time not considered in music generation.
-
-An interesting alternative representation of chords, named Chord2Vec (inspired by the
-Word2Vec model for natural language [70]), has been recently proposed in [68]12. Rather than thinking of chords (vertically) as vectors, they represent chords (horizontally) as se- quences of constituent notes. More precisely: 1) a chord is represented as an (arbitrary length) ordered sequence of notes and 2) chords are separated by a special symbol (as for sentence markers in natural language processing). When using this representation for predicting neighboring chords, a specific compound architecture is used, named RNN Encoder-Decoder, offering a very accurate model (see Section 7.3.4.1). Note that a somehow similar model has been used for polyphonic music generation in
-the BachBot system [66] (analyzed in Section 7.3.1.3). In this model, for each time step, the various notes are represented as a sequence and a special delimiter symbol (|||) indicates
-the next time frame (with constant time step of an eighth note ˇ “( ). Notes are ordered, in a descending pitch (soprano voice being the first one). Each note is encoded as its MIDI pitch
-value and a boolean indicating if it is tied to a note at the same pitch from previous frame. An example is shown at Figure 4.8, encoding two successive chords (the first having the duration of a quarter note) and the second one possessing a fermata (noted as (.)).
-
+\begin{figure}[H]
+	\centering
+\includegraphics[scale=0.9]{images/ode_to_joy.png}
+	\caption{Акорден запис}
+	\label{fig:akordi}
+\end{figure}
 
 \subsection{Аспекти на податочна репрезентација за моделите за машинско учење}
 
-Во продолжение ќе ги разгледам аспектите на репрезентација на симболична музика за користење со алгоритмите за машинско учење. Тие имаат влијание на перфромансите на алгоритмите за генерирање
-на музика.
+Начинот на кој се трансформира изворниот формат на музиката во формат погоден за моделите за машинско учење драстично влијае на генерациските перформанси на моделот. Мали промени во податочната репрезентација може да доведат до израз различни музички особености во процесот на генерализација и генерирање на музика. Во продолженије ќе разгледам некои од клучните аспекти на податочната репрезентација.
 
-Изворно податочно множество, влез на системот, излез од системот. 
+\subsubsection{Репрезентација на времето}
 
-\cite{Tikhonov2017} For each note we were building a note embedding that corresponded to the pitch of the note, an octave embedding that corresponded to the octave of the note and a delay embedding that corresponded to the length of the note. We were using this three embeddings and meta-information of a given MIDI track to build a concatenated note representation that was used as an input for training throughout this paper.
+Времето може да одлучиме да го претставиме како основен елемент на податочната репрезентација, т.е. да ја поделиме музиката во временски исечоци, или да го вградиме како параметар на основните елементи на музичката секвенца, слично како што е тоа направено во MIDI датотеките. Првиот случај е многу почест, скоро исклучиво искористен во минатите трудови (ЦИТИРАЈ СИТЕ ШТО СЕ СО ПИАНО ЛЕНТИ И ДРУГО ШТО НАЈДЕШ). Предностите му се што е едноставен за креирање на податочен енкодинг и недвосмислена претстава на времето и поедноставен приказ на акорди и полифонија. Недостатокот е реткоста (sparsity) на добиените примероци и честото повторување на идентични елементи во секвенците, на што драстично влијае грануларноста (резолуцијата). Можни се поделби на времето според реално време (пр. милисекунди) (ЦИТИРАЈ СИТЕ ШТО СЕ СО ПИАНО ЛЕНТИ И ДРУГО ШТО НАЈДЕШ), кадешто обично резолуцијата е порамнета со одредено нотно времетраење, и поделба на времето по времетраење на нотите (или метричка поделба) \cite{Walder2016}. Поделбата по ноти има потенцијал за побалансирано податочно множество, меѓутоа за влече со себе големи ограничувања за структурата на песните (нпр. промена на темпо може да резултира во големи дисторзии во добиената репрезентација).
+Претставање на времето како дел од елементите на музичката секвенца пружа многу голема флексибилност, меѓутоа има доста недостатоци како нпр: нема ефикасен начен за енкодирање на времето во елементите, тоа ја експлодира големината на лексиконот на податочното множество, е многу комплексно да се енкодираат промени во тековно отсвирени ноти, пример при промена на акорди, каде дел од нотите би останале активни, дел би престанале да се свират, а нови би биле активирани. Се ова влијае драстично на перформансите на хипотетички модел за генерирање на музика.
 
-\subsection{Репрезентација на времето}
-4.4.1 Global vs Time Slice
-The representation of time is fundamental for musical processes. There is a first decision about the temporal scope of the representation (and its relation to the temporal nature of the architecture used):
-• global – In this first case, there is no notion of temporal sequence and no explicit notion of time. The granularity of processing by the deep network architecture is the represen-
-tation as a whole. The architecture used is not recurrent (typically a feedforward archi- tecture or an autoencoder). Examples are the MiniBach system (see Section 7.1.1.1) and the DeepHear system (see Section 7.1.3.1).
-• time step (or time slice) – In this second case, the most frequent one, the atomic temporal granularity of the input (training input or generation input) is a local temporal slice
-of the musical content, corresponding to a specific temporal moment (time step). The granularity of processing by the deep network architecture is a time step. Note that the time slice is usually set to the shortest note duration (see Section 4.4.3), but it may be set larger, e.g., to a measure in the system discussed in [106].
-• note step – This third case, rare, is proposed byWalder in [113]. In this approach, there is no fixed time step. The granularity of processing by the deep network architecture is
-a note. See [113] for more details. A corollary of this design decision is that in the global case, the representation of a
-musical data used as a a training input and as a generation input needs to have a fixed size (the number of time steps), whereas in the time step and note step cases, the sequence size is variable: actual lengths of the training input, the generation input and the generated output may be different.
+\subsubsection{Краеви на нотите}
 
-\subsection{Краеви на нотите}
-4.4.2 Note Ending
-Another important issue is about the note ending, i.e. how is (or is not) represented the end of a note. In the MIDI representation format, the end of a note is explicitly stated (via a Note Off event13). In the piano roll14 notation shown in Section 4.3.2, there is no explicit representation of the ending of a note and, as a result, one cannot distinguish between two
-repeating quarter notes ˇ “ ˇ “ and a half note ˘ “. In [21], Eck and Schmidhuber mention two strategies to address this limitation:
-• a first strategy (and the most common one) is to divide by 2 the size of the time step (time slice)15 and always mark note endings with a special tag, e.g., 0. The advantage is
-that one does not need to change input and target data structures;
-• an alternative strategy is to have a special computing unit(s) in the network to indicate the beginning of a note. This method is employed by Todd in [106].
+При репрезентација на музиката со временски исечоци не постои не можеме да разликуваме помеѓу две исти ноти отсвирени во два последователни исечоци и една нота со времетраење еднаква на сумата од времетраењето на двете поединечни ноти. Проблемот може да се пристапи на 3 начини:
+\begin{itemize}
+    \item Да се игнорира.
+    \item Да се дуплира резолуцијата/грануларноста на податочната репрезентација од најмалото времетраење кое го има во податоците (или произволно одредено времетраење) со што ќе се додаде симбол за крај на ноти кој би се користел во секој друг временски чекор.
+    \item Да се дуплира лексиконот на влезното множество, со што за секоја нота ќе има 2 симболи, еден за почеток еден за продолжување на нотата.
+\end{itemize}
+Вториот и третиот пристап го решаваат проблемот, меѓутоа ја дуплираат пресметковната комплексност на проблемот на учење и генерирање на музика.
 
-\subsection{Резолуција}
-4.4.3 Time Quantization
-Some global time quantization, i.e. the definition of the value of the time step is needed to temporally interpret the representation. Eck and Schmidhuber [21] mentions two alternative strategies:
-• most commonly, the time step is set to the smallest duration of a note in the corpus
-(training examples/dataset), e.g., a sixteenth note ˇ “) . One immediate consequence of this “leveling down” is the number of processing steps necessary independently of the duration of actual notes;
-• an alternative strategy, interesting to be noted, was devised by Mozer in the CONCERT system [77] (see Section 7.3.1.1), who used a distributed encoding of duration that al-
-lowed him to process a note of any duration in a single network processing time step. By representing in a single time step a note rather than a slice of time, the number of time steps to be bridged by the network in learning global structure is greatly reduced. The approach ofWalder for a note granularity of processing (see Section 4.4.1) is analog. In this strategy, there is no uniform discretization of time (time slice) and no need for.
+\subsubsection{Резолуција}
 
-4.4.3 Time Quantization
-Some global time quantization, i.e. the definition of the value of the time step is needed to temporally interpret the representation. Eck and Schmidhuber [21] mentions two alternative strategies:
-• most commonly, the time step is set to the smallest duration of a note in the corpus
-(training examples/dataset), e.g., a sixteenth note ˇ “) . One immediate consequence of this “leveling down” is the number of processing steps necessary independently of the duration of actual notes;
-• an alternative strategy, interesting to be noted, was devised by Mozer in the CONCERT system [77] (see Section 7.3.1.1), who used a distributed encoding of duration that al-
-lowed him to process a note of any duration in a single network processing time step. By representing in a single time step a note rather than a slice of time, the number of time steps to be bridged by the network in learning global structure is greatly reduced. The approach ofWalder for a note granularity of processing (see Section 4.4.1) is analog. In this strategy, there is no uniform discretization of time (time slice) and no need for.
-
-\subsection{Аудио сигнал}
-
-\subsection{MIDI}
-
-
-\subsection{Текст}
+При репрезентација на музиката со временски исечоци клучен фактор кој влијае на перформансите е резолуцијата/грануларноста на репрезентацијата. Поголема грануларност овозможува репрезентирање на по интересни, брзи, комплексни мелодии, меѓутоа резултира во поголеми мемориски побарувања на моделот за учење на таквите музички секвенци. Додатно зголемување на грануларноста резултира и во поголем број на празни елементи, и нотите со подолго времетраење ќе се повторуваат. Најчест пристап е да се одбере грануларност ендаква на најмалото времетраење на нота во податочното множество, меѓуто тоа не е секогаш така. Доколку релативно мал дел од елементите во податочното множество го имаат најмалото времетраење, може да се скоконе кон поголемо времетрање со цел поедноставување на проблемот.
 
 \subsection{Пиално лента}
 
-The piano roll representation of a melody (monodic or polyphonic) is inspired from au- tomated pianos (see Figure 4.4). This was a continuous roll of paper with perforations (holes) punched into it. Each perforation represents a note control information, to trigger a given note. The length of the perforation corresponds to the duration of a note. On the other dimension, the localization of a perforation corresponds to its pitch. An example of a modern piano roll representation (for digital music systems) is shown
-at Figure 4.5. The x axis represents time and the y axis the pitch. In that example, two voices are encoded. The piano roll is one of the most frequent representations used, although it has some limitations. An important one, comparing to MIDI representation, is that the information of the note off does not exist. As a result, there is no way to distinguish between a long note and two short notes (see Section 4.4.2). The experiment conducted by Huang and Hu [47] is interesting in that they compare using MIDI and piano roll formats. See also the publication byWalder entitled “Modelling Symbolic Music: Beyond the Piano Roll” [113]
+Пиано лента е најчесто искористената податолна репрезентација за работење со музика со модели за машинско учење (ЦИТИРАЈ ИСКОРИСТЕНА ПИАНОЛЕНТА). Музиката е поеделена на временски чекори, кадешто секој елемент претставува временски пресек со должина од дел од цела нота, или дел од секунда. Секој временски чекор ги претставува тековно исвирените ноти. Најчесто е бинарен вектор, кадешто секој елемент од векторот претставува одредена нота, според апсолутната вредност на висина на тонот (најчесто преку користење на pitch вредностите на нотите од MIDI стандардот), при што ненулта вредност означува дека таа нота се свири во моментот. Во одредени варијанти векторот може да биде целоброен, при што ненултите вредности опишуваат некоја особина на отсвирената нота како гласност или интензитет. Инспирирана е од старите пиано ленти од перфорирана хартија користени во само-свиречки пиана или метални ленти од музички кутии.
+(СЛИКА ОД СТАРА ПИАНО ЛЕНТА, РЕАЛНА)
+(СЛИКА ОД ПИАНО ЛЕНТА, The x axis represents time and the y axis the pitch.)
 
-\subsection{Distributed note representation / circle of fifths}
+\subsection{Дистрибуирани репрезентации / круг на петинки}
 
-Mozer [29] builds RNN to model and generate melody using a distributed
-approach to music encoding. These systems generate output at the note level rather than at uniform time steps. Each pitch is encoded based on its fundamen- tal frequency, chromatic class, and position in the circle of fifths. Note duration is encoded using a similar approach. Chordal accompaniment is encoded based on the pitches present. Some input units denote time signature, key, and down-
-beats. Mozer’s
+Освен преку апсолутна вредност на висина на тон, нотите може да се репрезентираат и со семантички збогатена комплексна форма. Во трудот \cite{Mozer1994} авторот користи комбинација од основна фрекфенција, хроматска класа и позиција во "круг од петинки" за претставување на нотите, додека во трудот \cite{Biles1994} авторот ги репрезентира нотите во однос на акордите што тие ги придржуваат. Акордите се дел од една секвенца а нотите од друга, пропратна секвенца. Нотите имаат 14 можни висини од MIDI стандардот, а висината на тонот се одредува според придружниот акорд.
+(ПОТЕНЦИЈАЛНО ОТСТРАНИ)
 
-\cite{Biles1994} They only allow for 14 pitches in the melody, but those are релатив, their absolute values are chose according to a mapped chrod. A chord map is created for each half measure. Each map is an array of 14 MIDI pitches. A chord is mapped to a scale strictly vertically. After a scale is selected, it is extended to 14 tones, beginning at or above middle C. Interesting representation.
-
-\section{Предпроцесирање, трансформации и филтрирање}
+\section{Предпроцесирање}
 
 \cite{Sturm2016} We create data for training our folk-rnn model in the following way. We
 remove title fields and ornaments. We remove all transcriptions that have fewer than 7 measures when considering repetitions (to remove contributions that are not complete transcriptions, but transcriptions of suggested endings, variations, etc.). We remove all transcriptions that have more than one meter or key.11 We transpose all remaining transcriptions (23,636) to a key with root C.
@@ -355,10 +303,6 @@ In order to analyze and reconstruct a melody we trained a deep autoencoder to en
 of the intervals between notes. We alter the intervals using two methods: 1) adding a constant value to the original intervals and 2) multiplying a constant value to the intervals. Many different constant values are used and the resulting pitches from the new interval values are superimposed on to the measure’s original rhythms. The new unit is added to the dataset. We restrict the library to measures with pitches that fall into a five octave range (midi notes 36-92). Each measure is transposed up and down a half step so that all instances within the pitch range are covered. The only manipulation performed on the duration values of notes within a measure is the temporal compression of two consecutive measures into a single measure. This “double time" representation effectively increases the number of measures, while leaving the inherent rhythmic structure in tact. After all of this manipulation and augmentation there are roughly 80 million unique measures. We use 60% for training and 40% for testing our autoencoder. The first step in the process is feature extraction and creating a vector representation of the unit. Unit
 selection allows for a lossy representation of the events within a measure. As long as it is possible to rank the units it is not necessary to be able to recreate the exact sequence of notes with the autoencoder. Therefore, we can represent each measure using a bag-of-words (BOW) like feature vector. Our features include:
 1. counts of note tuples <pitch1, duration1> 2. counts of pitches <pitch1> 3. counts of durations <duration1> 4. counts of pitch class <class1> 5. counts of class and rhythm tuples <class1, duration1> 6. counts of pitch bigrams <pitch1, pitch2>
-
-\subsection{Филтрирање}
-
-\section{Податочно множество}
 
 \chapter{Tools}
 

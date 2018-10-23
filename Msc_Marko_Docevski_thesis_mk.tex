@@ -121,10 +121,6 @@
 \addto\captionsbulgarian{% Replace "english" with the language you use
     \renewcommand{\listtablename}{Листа на табели}
 }
-\addto\captionsbulgarian{
-    \renewcommand{\listacronyms}{Листа на кратенки}
-}
-        
         
         %\usepackage{chngcntr}
         %\counterwithin{figure}{chapter}
@@ -162,20 +158,12 @@
         \addcontentsline{toc}{chapter}{\listtablename}
         \listoftables
         
-        \addcontentsline{toc}{chapter}{\listacronyms}
-        
         %%%%%%%%%% (MILOS) needed for MKD name for 'chapter'
         \titleformat{\chapter}[display]
         {\normalfont\huge\bfseries}{Глава\ \thechapter}{20pt}{\Huge}
         %%%%%%%%%%
-    
-        
-        % \newpage %Page break 
-        % \addcontentsline{toc}{section}{Листа на кратенки}
-        % \section*{Листа на кратенки}
 
-        
-        \newpage %Page break
+        % \newpage %Page break
         
         %%%%% GLAVI OD TEKSTOT
         \pagestyle{plain}

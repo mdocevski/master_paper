@@ -126,6 +126,11 @@
         %\counterwithin{figure}{chapter}
         %%\counterwithout{figure}{chapter}
         
+\usepackage{tocloft}
+\setlength{\cftchapnumwidth}{3em}
+\cftsetindents{section}{3em}{3em}
+\cftsetindents{subsection}{6em}{3.2em}     
+
 \begin{document}
         %	\frontmatter 
         %\nobibliography*
@@ -173,11 +178,17 @@
     % 	\pagenumbering{arabic}
         \include{MSc_Marko_Docevski_tekst}
         
+        \bibliography{2017_PhD_all}
+        \bibliographystyle{IEEEtran}
+            
         \appendix
-        
+        \renewcommand\thechapter{П\arabic{chapter}}                % chapter number in alph letters
+        \renewcommand\thesection{П\arabic{chapter}.\arabic{section} } % make sections "A.I"
+        \setcounter{chapter}{0} 
         %%%%%%%%%% (MILOS) needed for MKD name for 'appendix'
-        \titleformat{\chapter}[display]
-        {\normalfont\huge\bfseries}{Додаток\ \thechapter}{20pt}{\Huge}
+        \titleformat{\chapter}
+        {\normalfont\huge\bfseries}{П.\arabic{chapter}\chaptertitle}{20pt}{\Huge}
+        \include{MSc_Marko_Docevski_appendix_mk}
         %%%%%%%%%%
         
         % \include{appa}
@@ -186,9 +197,7 @@
         %\include{biblio}
         %\bibliography{\jobname}
     %	\begin{singlespace}
-            \bibliography{2017_PhD_all}
             %	\bibliographystyle{plain}
-            \bibliographystyle{IEEEtran}
     %	\end{singlespace}
             
 \end{document}
